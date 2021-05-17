@@ -1,3 +1,3 @@
 class Amenity < ApplicationRecord
-  belongs_to :home_amenity
+  has_many :home_amenities
 end
