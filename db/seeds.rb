@@ -6,14 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 puts 'cleaning db!'
-# HomeAmenity.destroy_all
+HomeAmenity.destroy_all
 Amenity.destroy_all
-# Booking.destroy_all
-# TinyHome.destroy_all
+Booking.destroy_all
+TinyHome.destroy_all
 User.destroy_all
 
 # AMENITIES
-puts 'creating amenities!'
+puts 'creating amenities...'
 
 amenities = [
   { name: 'heating',
@@ -42,19 +42,20 @@ puts "#{amenities.count} amenities created!"
 
 
 # USERS
-puts 'creating users!'
+puts 'creating users...'
 
 emails = ['pascal@th.com', 'holly@th.com', 'thomas@th.com', 'joe@average.com', 'jess@google.com']
-u_ids = []
 
 emails.each do |email|
   user = User.create!(
     email: email,
     password: '123456'
   )
-  u_ids << user[:id]
 end
-puts "#{u_ids.count} users created!"
+puts "#{User.all.count} users created!"
+
+# TINY HOMES
+puts 'creating tiny homes...'
 
 th_details = [
   { name: 'Peaceful Getaway', description: 'cozy energy'},
@@ -67,36 +68,60 @@ th_details = [
   { name: 'Man Cave To-Go', description: 'peaceful bro escape'},
   { name: 'We <3 Travel', description: 'pack up and go real quick!'},
   { name: 'Toasty Road Home', description: 'great for winter escapes'} ]
-# TINY HOMES
-puts 'creating tiny homes!'
-th_names =
-th_ids = []
 
-th_details.each do
-  tiny_home = TinyHome.create!(
-    name: th_details[:name],
+th_details.each do |th|
+  tiny_home = TinyHome.new(
+    name: th[:name],
     address: Faker::Address,
-    description: th_details[:description] ,
+    description: th[:description] ,
     room_number: rand(1..2),
     price: rand(50..100),
-    size: [80, 90, 100, 110, 120].sample,
-    user_id: u_ids.sample
+    size: [80, 90, 100, 110, 120].sample
   )
-  th_ids << tiny_home[:id]
+  tiny_home.user = User.all.sample
+  tiny_home.save!
 end
 
-puts "#{th_ids.count} tiny homes created!"
+puts "#{TinyHome.all.count} tiny homes created!"
 
 # BOOKINGS
+puts 'creating bookings...'
+
 5.times do
-  Booking.create!(
-    start_date:
-    end_date:
-    total_cost:
-    user_id:
-    tiny_home_id:
+  booking = Booking.new(
+    start_date: rand(30..60).days.from_now,
+    end_date: rand(61..90).days.from_now
   )
+  booking.user = User.all.sample
+  booking.tiny_home = TinyHome.all.sample
+  booking.save!
 end
+
+puts "#{Booking.all.count} bookings created!"
+
+# HOME AMENITIES
+puts 'creating home amenities...'
+
+TinyHome.all.each do |th|
+  amenities_array = Amenity.all.to_a.clone
+  rand(3...Amenity.all.size).times do
+    ha = HomeAmenity.new
+    ha.tiny_home = th
+    amenity = amenities_array.sample
+    ha.amenity = amenity
+    amenities_array.delete(amenity)
+    ha.save!
+    puts "created home amenity #{ha.id}"
+    # begin
+    #   ha.amenity = Amenity.all.sample
+    #   ha.save!
+    # rescue
+    #   puts "combination already exists"
+    # end
+  end
+end
+
+puts "#{HomeAmenity.all.count} home amenities created!"
 
 #       t.string :name
 #       t.string :address
