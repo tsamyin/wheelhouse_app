@@ -1,0 +1,12 @@
+<h1>Explore nearby</h1>
+
+<% @tiny_homes.each do |tiny_home| %>
+<p><%= link_to tiny_home.name, tiny_home_path(tiny_home) %></p>
+<%= link_to 'Edit', edit_tiny_home_path(tiny_home) %>
+<%= link_to 'Delete', tiny_home_path(tiny_home), method: :delete %>
+<% end %>
+
+<br>
+
+<%= link_to 'Add a Tiny Home', new_tiny_home_path %>
+
