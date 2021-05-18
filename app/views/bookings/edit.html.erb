@@ -1,4 +1,4 @@
-<h1>Editing Booking #<%= @booking.id %></h1>
+<h1>Edit Your Stay at <%= @booking.tiny_home.name %></h1>
 
 <%= render 'form', tiny_home: @booking.tiny_home, booking: @booking %>|
 <%= link_to 'Back', tiny_homes_path %>
