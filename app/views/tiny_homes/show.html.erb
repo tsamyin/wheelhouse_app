@@ -1,4 +1,37 @@
-<h1><%= @tiny_home.name %></h1>
+<!-- <p>Address: <%#= @tiny_home.address %></p>
+<p>Description: <%#= @tiny_home.description %></p>
+<p>Available: <%#= @tiny_home.available %></p>
+<p>Price: <%#= @tiny_home.price %></p>
+<p>Room number: <%#= @tiny_home.room_number %></p>
+<p>Size: <%#= @tiny_home.size %></p> -->
+
+<!-- card -->
+  <div class="container">
+      <h2><%= @tiny_home.name %></h2>
+    <div class="d-flex tiny_details">
+      <p><%= @tiny_home.address %></p>
+      <p><%= @tiny_home.address %></p>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-12">
+        <div class="card-tiny">
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+          <div class="card-tiny-infos">
+            <div>
+              <p><%= @tiny_home.description %></p>
+              <div class="d-flex tiny_details">
+                <p>Rooms: <%= @tiny_home.room_number %></p>
+                <p><%= @tiny_home.size %> sq.ft</p>
+              </div>
+            </div>
+            <h2 class="card-tiny-pricing"><%= @tiny_home.price %>$/day</h2>
+            <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-tiny-user avatar-bordered" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <p>Address: <%= @tiny_home.address %></p>
 <p>Description: <%= @tiny_home.description %></p>
