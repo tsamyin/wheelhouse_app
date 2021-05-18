@@ -122,24 +122,3 @@ TinyHome.all.each do |th|
 end
 
 puts "#{HomeAmenity.all.count} home amenities created!"
-
-#       t.string :name
-#       t.string :address
-#       t.text :description
-#       t.boolean :available
-#       t.integer :price
-#       t.integer :room_number
-#       t.integer :size
-#       t.references :user, null: false, foreign_key: true
-
-
-
-
-
-
-
-
-
-
-
-
