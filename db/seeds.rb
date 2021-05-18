@@ -58,21 +58,21 @@ puts "#{User.all.count} users created!"
 puts 'creating tiny homes...'
 
 th_details = [
-  { name: 'Peaceful Getaway', description: 'cozy energy'},
-  { name: "Rock n' Roll Roadie", description: 'country vibes'},
-  { name: 'Earthy Escape', description: 'eco-friendly choices'},
-  { name: 'Couples Retreat', description: 'perfect for a loving double'},
-  { name: 'Family Blastoff!', description: 'many hidden compartments'},
-  { name: 'Pet Planet', description: 'great for you and your pet pal'},
-  { name: 'Awesome Tiny Home', description: 'everything you need!'},
-  { name: 'Man Cave To-Go', description: 'peaceful bro escape'},
-  { name: 'We <3 Travel', description: 'pack up and go real quick!'},
-  { name: 'Toasty Road Home', description: 'great for winter escapes'} ]
+  { name: 'Peaceful Getaway', description: 'cozy energy', address: 'Montreal, QC, Canada'},
+  { name: "Rock n' Roll Roadie", description: 'country vibes', address: 'Laval, QC, Canada'},
+  { name: 'Earthy Escape', description: 'eco-friendly choices', address: 'St. Jerome, QC, Canada'},
+  { name: 'Surfer Retreat', description: 'radical wave hunter', address: 'Miami, Florida, USA'},
+  { name: 'Family Blastoff!', description: 'many hidden compartments', address: 'Halifax, NS, Canada'},
+  { name: 'Pet Planet', description: 'great for you and your pet pal', address: 'Toronto, ON, Canada'},
+  { name: 'Awesome Tiny Home', description: 'everything you need!', address: 'Kingston, ON, Canada'},
+  { name: 'Man Cave To-Go', description: 'peaceful bro escape', address: 'Ajax, ON, Canada'},
+  { name: 'We <3 Travel', description: 'pack up and go real quick!', address: 'New Jersey, NY, USA'},
+  { name: 'Toasty Road Home', description: 'great for winter escapes', address: 'North Bay, ON, Canada'} ]
 
 th_details.each do |th|
   tiny_home = TinyHome.new(
     name: th[:name],
-    address: Faker::Address,
+    address: th[:address],
     description: th[:description] ,
     room_number: rand(1..2),
     price: rand(50..100),
@@ -111,7 +111,6 @@ TinyHome.all.each do |th|
     ha.amenity = amenity
     amenities_array.delete(amenity)
     ha.save!
-    puts "created home amenity #{ha.id}"
     # begin
     #   ha.amenity = Amenity.all.sample
     #   ha.save!
