@@ -33,3 +33,11 @@
     </div>
   </div>
 
+<p>Address: <%= @tiny_home.address %></p>
+<p>Description: <%= @tiny_home.description %></p>
+<p>Available: <%= @tiny_home.available %></p>
+<p>Price: <%= @tiny_home.price %></p>
+<p>Room number: <%= @tiny_home.room_number %></p>
+<p>Size: <%= @tiny_home.size %></p>
+
+<%= link_to 'Book', new_tiny_home_booking_path(@tiny_home) %>
