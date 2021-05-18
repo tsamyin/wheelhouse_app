@@ -1,0 +1,14 @@
+.btn-secondary {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  font-weight: bold;
+  background: linear-gradient(#5B808D, #465F7D);
+  transition: background 0.3s ease;
+  // border: 1px solid #30434C;
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(#30434A, #465F7D);
+  color: white;
+}
