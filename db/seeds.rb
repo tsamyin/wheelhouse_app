@@ -6,43 +6,99 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 puts 'cleaning db!'
+# HomeAmenity.destroy_all
 Amenity.destroy_all
+# Booking.destroy_all
+# TinyHome.destroy_all
+User.destroy_all
 
+# AMENITIES
 puts 'creating amenities!'
 
-Amenity.create!(
-  name: 'air conditioning',
-  description: 'keeps it chill in hot environments',
-)
+amenities = [
+  { name: 'heating',
+    description: 'keeps you toasty warm in cold environments' },
+  { name: 'air conditioning',
+    description: 'keeps it chill in hot environments' },
+  { name: 'oven',
+    description: 'cook up some food in your tiny home!' },
+  { name: 'microwave',
+    description: 'easily microwave some popcorn' },
+  { name: 'toaster',
+    description: 'your best breakfast bread easily' },
+  { name: 'tv',
+    description: 'movie theatre on the go!' },
+  { name: 'shade',
+    description: 'pull-out shade!' } ]
 
-Amenity.create!(
-  name: 'heating',
-  description: 'keeps you toasty warm in cold environments',
-)
+amenities.each do |amenity|
+  Amenity.create!(
+    name: amenity[:name],
+    description: amenity[:description],
+  )
+end
 
-Amenity.create!(
-  name: 'oven',
-  description: 'cook up some food in your tiny home!',
-)
+puts "#{amenities.count} amenities created!"
 
-Amenity.create!(
-  name: 'microwave',
-  description: 'easily microwave some popcorn' ,
-)
 
-Amenity.create!(
-  name: 'toaster',
-  description: 'your best breakfast bread easily',
-)
+# USERS
+puts 'creating users!'
 
-Amenity.create!(
-  name: 'tv',
-  description: 'movie theatre on the go!',
-)
+emails = ['pascal@th.com', 'holly@th.com', 'thomas@th.com', 'joe@average.com', 'jess@google.com']
+u_ids = []
 
-Amenity.create!(
-  name: 'shade',
-  description: 'pull-out shade!',
-)
+emails.each do |email|
+  user = User.create!(
+    email: email,
+    password: '123456'
+  )
+  u_ids << user[:id]
+end
+puts "#{u_ids.count} users created!"
 
-puts 'all done!'
+
+# # TINY HOMES
+# puts 'creating tiny homes!'
+# th_names =
+# th_ids = []
+
+# 10.times do
+#   tiny_home = TinyHome.create!(
+#     name: ,
+#     address: Faker::Address,
+#     description: ,
+#     room_number: ,
+#     size: ,
+#     user_id: u_ids.sample
+#   )
+#   th_ids << tiny_home[:id]
+# end
+
+
+# # BOOKINGS
+# 5.times do
+#   Booking.create!(
+
+#   )
+# end
+
+#       t.string :name
+#       t.string :address
+#       t.text :description
+#       t.boolean :available
+#       t.integer :price
+#       t.integer :room_number
+#       t.integer :size
+#       t.references :user, null: false, foreign_key: true
+
+
+
+
+
+
+
+
+
+
+
+
