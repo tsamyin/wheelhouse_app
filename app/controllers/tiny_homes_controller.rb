@@ -2,16 +2,19 @@ class TinyHomesController < ApplicationController
   before_action :set_tiny_home, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tiny_homes = TinyHome.all
+    # @tiny_homes = TinyHome.all
+    @tiny_homes = policy_scope(TinyHome).order(created_at: :desc)
   end
 
   def new
     @tiny_home = TinyHome.new
+    authorize @tiny_home
   end
 
   def create
     @tiny_home = TinyHome.new(tiny_home_params)
     @tiny_home.user = current_user
+    authorize @tiny_home
     if @tiny_home.save
       redirect_to tiny_home_path(@tiny_home), notice: 'Your tiny home was successfully created.'
     else
@@ -40,6 +43,7 @@ class TinyHomesController < ApplicationController
 
   def set_tiny_home
     @tiny_home = TinyHome.find(params[:id])
+    authorize @tiny_home
   end
 
   def tiny_home_params
