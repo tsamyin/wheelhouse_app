@@ -22,6 +22,6 @@ class TinyHomePolicy < ApplicationPolicy
   end
 
   def destroy?
-    record.user == user
+    record.bookings.empty? && record.user == user
   end
 end
