@@ -57,7 +57,54 @@
         <% end %>
         <h2 class="card-tiny-pricing"><%= @tiny_home.price %>$/day</h2>
       </div>
+      <div class="col-3 justify-content-flex-end">
+        <%= link_to 'Book', new_tiny_home_booking_path(@tiny_home), class: "btn btn-secondary" %>
+      </div>
     </div>
   </div>
   
 <!-- AMENITIES -->
+  <div class="container mt-3 border-top">
+    <h2>Amenities</h2>
+      <div class="row">
+          <div class="col-lg-3">
+            <ul>
+              <li class="list-items-space">
+                <i class="fas fa-fan"></i>
+                <p>Air conditioning</p>
+              </li>
+              <li class="list-items-space">
+                <i class="fas fa-hand-sparkles"></i>
+                <p>Oven</p>
+              </li>
+              <li class="list-items-space">
+                <i class="fas fa-shower"></i>
+                <p>Microwave</p>
+              </li>
+              <li class="list-items-space">
+                <i class="fas fa-fan"></i>
+                <p>Heating</p>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-3">
+            <ul>
+              <li class="list-items-space">
+                <i class="fas fa-bread-slice"></i>
+                <p>Toaster</p>
+              </li>
+              <li class="list-items-space">
+                <i class="fas fa-tv"></i>
+                <p>TV</p>
+              </li>
+              <li class="list-items-space">
+                <i class="fas fa-umbrella-beach"></i>
+                <p>Shade</p>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-6">
+            <h1>MAYBE A MAP HERE!!!</h1>
+          </div>
+      </div>
+  </div>
