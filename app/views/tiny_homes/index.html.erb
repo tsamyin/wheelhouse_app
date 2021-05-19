@@ -1,12 +1,33 @@
-<h1>Explore nearby</h1>
+<div class="container">
+  <h1 class="">Explore nearby</h1>
+  <% if policy(TinyHome).new? %>
+    <%= link_to 'Add a Tiny Home', new_tiny_home_path, class: 'btn btn-secondary' %>
+  <% end %>
+  <div class="row">
 
-<% @tiny_homes.each do |tiny_home| %>
-<p><%= link_to tiny_home.name, tiny_home_path(tiny_home) %></p>
-<%= link_to 'Edit', edit_tiny_home_path(tiny_home) %>
-<%= link_to 'Delete', tiny_home_path(tiny_home), method: :delete %>
-<% end %>
+<!-- tiny home cards -->
+    <% @tiny_homes.each do |tiny_home| %>
+      <div class="col-4">
+        <div class="card-trip">
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+          <div class="d-flex card-trip-details">
+            <% if policy(tiny_home).edit? %>
+              <p class='pr-2'><%= link_to 'Edit', edit_tiny_home_path(tiny_home) %></p>
+            <% end %>
+            <% if policy(tiny_home).destroy? %>
+              <p class=''><%= link_to 'Delete', tiny_home_path(tiny_home), method: :delete %></p>
+            <% end %>
+          </div>
+          <div class="card-trip-infos">
+            <div>
+              <h2><%= link_to tiny_home.name, tiny_home_path(tiny_home) %></h2>
+              <p><%= tiny_home.description %></p>
+            </div>
+            <h2 class="card-trip-pricing">$<%= tiny_home.price %>/day</h2>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
-<br>
-
-<%= link_to 'Add a Tiny Home', new_tiny_home_path, class: 'btn btn-secondary' %>
-
+</div>

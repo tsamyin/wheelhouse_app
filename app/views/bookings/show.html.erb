@@ -6,8 +6,12 @@
       <b>Total: $<%= @booking.total_cost %> </b>
     </div>
     <div class="col-8 my-5">
-      <%= link_to 'Edit booking', edit_booking_path(@booking), class: 'btn btn-secondary' %>
-      <%= link_to 'Delete booking', booking_path(@booking), method: :delete, class: 'btn btn-secondary' %>
+      <% if policy(@booking).edit? %>
+        <%= link_to 'Edit booking', edit_booking_path(@booking), class: 'btn btn-secondary' %>
+      <% end %>
+      <% if policy(@booking).destroy? %>
+        <%= link_to 'Delete booking', booking_path(@booking), method: :delete, class: 'btn btn-secondary'  %>
+      <% end %>
     </div>
   </div>
 </div>

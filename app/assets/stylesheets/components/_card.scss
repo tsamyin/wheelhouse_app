@@ -33,6 +33,14 @@
   position: relative;
 }
 
+.card-trip .card-trip-details {
+  padding: 2px 16px 0px 16px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  position: relative;
+}
+
 .card-trip-infos .card-trip-user {
   position: absolute;
   right: 16px;
