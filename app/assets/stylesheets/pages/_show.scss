@@ -1,0 +1,19 @@
+ul {
+  list-style-type: none; /* Remove bullets */
+  padding-left: 0;
+}
+
+ul li {
+  font-size: 16px;
+  opacity: .7;
+  margin: 0;
+}
+
+ul li p {
+  padding-left: 16px;
+}
+
+.list-items-space {
+  display: flex;
+
+}
