@@ -48,6 +48,7 @@ class TinyHomesController < ApplicationController
   end
 
   def tiny_home_params
-    params.require(:tiny_home).permit(:name, :address, :description, :available, :price, :room_number, :size, :user_id)
+    params.require(:tiny_home).permit(:name, :address, :description, :available,
+                                      :price, :room_number, :size, :user_id, photos: [])
   end
 end
