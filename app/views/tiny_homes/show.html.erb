@@ -50,19 +50,16 @@
           </div>
         </div>
       </div>
-      <div class="col-6 justify-content-flex-end">
-        
+      <div class="col-6">
+
         <% if policy(Booking).new? %>
           <%= link_to 'Book', new_tiny_home_booking_path(@tiny_home), class: "btn btn-secondary" %>
         <% end %>
         <h2 class="card-tiny-pricing"><%= @tiny_home.price %>$/day</h2>
       </div>
-      <div class="col-3 justify-content-flex-end">
-        <%= link_to 'Book', new_tiny_home_booking_path(@tiny_home), class: "btn btn-secondary" %>
-      </div>
     </div>
   </div>
-  
+
 <!-- AMENITIES -->
   <div class="container mt-3 border-top">
     <h2>Amenities</h2>
