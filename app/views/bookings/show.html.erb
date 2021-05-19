@@ -1,6 +1,13 @@
-<h1><%= @booking.tiny_home.name %></h1>
-<p>FROM <%= @booking.start_date %> TO <%= @booking.end_date %></p>
-<b>TOTAL: $<%= @booking.total_cost %>
-
-<%= link_to 'Edit my booking', edit_booking_path(@booking) %>
-<%= link_to 'Delete my booking', booking_path(@booking), method: :delete %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-8 my-4">
+      <h1><%= @booking.tiny_home.name %></h1>
+      <p>From: <%= @booking.start_date %> To: <%= @booking.end_date %></p>
+      <b>Total: $<%= @booking.total_cost %> </b>
+    </div>
+    <div class="col-8 my-5">
+      <%= link_to 'Edit booking', edit_booking_path(@booking), class: 'btn btn-secondary' %>
+      <%= link_to 'Delete booking', booking_path(@booking), method: :delete, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+</div>
