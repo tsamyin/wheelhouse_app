@@ -22,7 +22,7 @@ amenities = [
     description: 'keeps it chill in hot environments' },
   { name: 'shower',
     description: 'no need to run around to wash yourself!' },
-  { name: 'microwave',
+  { name: 'cleaning',
     description: 'easily microwave some popcorn' },
   { name: 'toaster',
     description: 'your best breakfast bread easily' },
