@@ -4,6 +4,7 @@ class BookingsController < ApplicationController
   def new
     @tiny_home = TinyHome.find(params[:tiny_home_id])
     @booking = Booking.new
+    authorize @booking
   end
 
   def create
@@ -11,14 +12,12 @@ class BookingsController < ApplicationController
     @booking.tiny_home_id = params[:tiny_home_id]
     @booking.user = current_user
     @tiny_home = TinyHome.find(params[:tiny_home_id])
+    authorize @booking
     if @booking.save
       redirect_to booking_path(@booking), notice: 'Your booking was successfully completed.'
     else
       render :new
     end
-  end
-
-  def show
   end
 
   def edit
@@ -41,6 +40,7 @@ class BookingsController < ApplicationController
 
   def set_booking
     @booking = Booking.find(params[:id])
+    authorize @booking
   end
 
   def booking_params

@@ -1,12 +1,21 @@
 <h1>Explore nearby</h1>
 
 <% @tiny_homes.each do |tiny_home| %>
-<p><%= link_to tiny_home.name, tiny_home_path(tiny_home) %></p>
-<%= link_to 'Edit', edit_tiny_home_path(tiny_home) %>
-<%= link_to 'Delete', tiny_home_path(tiny_home), method: :delete %>
+  <p><%= link_to tiny_home.name, tiny_home_path(tiny_home) %></p>
+
+  <% if policy(tiny_home).edit? %>
+    <%= link_to 'Edit', edit_tiny_home_path(tiny_home) %>
+  <% end %>
+
+  <% if policy(tiny_home).destroy? %>
+    <%= link_to 'Delete', tiny_home_path(tiny_home), method: :delete %>
+  <% end %>
+
 <% end %>
 
 <br>
 
-<%= link_to 'Add a Tiny Home', new_tiny_home_path %>
+<% if policy(TinyHome).new? %>
+  <%= link_to 'Add a Tiny Home', new_tiny_home_path %>
+<% end %>
 
