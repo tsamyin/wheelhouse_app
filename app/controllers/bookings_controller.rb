@@ -5,6 +5,9 @@ class BookingsController < ApplicationController
     @bookings = Booking.all
   end
 
+  def show
+  end
+
   def new
     @tiny_home = TinyHome.find(params[:tiny_home_id])
     @booking = Booking.new
