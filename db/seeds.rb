@@ -17,19 +17,26 @@ puts 'creating amenities...'
 
 amenities = [
   { name: 'heating',
-    description: 'keeps you toasty warm in cold environments' },
+    description: 'keeps you toasty warm in cold environments',
+    icon: 'fas fa-fan' },
   { name: 'air conditioning',
-    description: 'keeps it chill in hot environments' },
+    description: 'keeps it chill in hot environments',
+    icon: 'fas fa-fan' },
   { name: 'shower',
-    description: 'no need to run around to wash yourself!' },
+    description: 'no need to run around to wash yourself!',
+    icon: 'fas fa-shower' },
   { name: 'cleaning',
-    description: 'easily microwave some popcorn' },
+    description: 'easily microwave some popcorn',
+    icon: 'fas fa-hand-sparkles'},
   { name: 'toaster',
-    description: 'your best breakfast bread easily' },
+    description: 'your best breakfast bread easily',
+    icon: 'fas fa-bread-slice' },
   { name: 'tv',
-    description: 'movie theatre on the go!' },
+    description: 'movie theatre on the go!',
+    icon: 'fas fa-tv' },
   { name: 'shade',
-    description: 'pull-out shade!' } ]
+    description: 'pull-out shade!',
+    icon: 'fas fa-umbrella-beach' } ]
 
 amenities.each do |amenity|
   Amenity.create!(

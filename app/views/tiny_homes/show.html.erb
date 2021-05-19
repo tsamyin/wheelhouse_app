@@ -51,7 +51,7 @@
         </div>
       </div>
       <div class="col-6 justify-content-flex-end">
-        
+
         <% if policy(Booking).new? %>
           <%= link_to 'Book', new_tiny_home_booking_path(@tiny_home), class: "btn btn-secondary" %>
         <% end %>
@@ -62,18 +62,36 @@
       </div>
     </div>
   </div>
-  
+
 <!-- AMENITIES -->
+
   <div class="container mt-3 border-top">
     <h2>Amenities</h2>
       <div class="row">
-          <div class="col-lg-3">
-            <ul>
+        <div class="col-lg-3">
+          <ul>
+
+            <% @tiny_home.amenities.each do |amenity| %>
+
               <li class="list-items-space">
-                <i class="fas fa-fan"></i>
-                <p>Air conditioning</p>
+                <i class='<%= amenity.icon %>'></i>
+                <p><%= amenity.name %></p>
               </li>
-              <li class="list-items-space">
+
+            <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--               <li class="list-items-space">
                 <i class="fas fa-hand-sparkles"></i>
                 <p>Oven</p>
               </li>
@@ -104,7 +122,7 @@
             </ul>
           </div>
           <div class="col-lg-6">
-            <h1>MAYBE A MAP HERE!!!</h1>
-          </div>
+            <h1></h1>
+          </div> -->
       </div>
   </div>

@@ -1,4 +1,5 @@
 class TinyHome < ApplicationRecord
+  has_many_attached :photos
   belongs_to :user
   has_many :home_amenities, dependent: :destroy
   has_many :amenities, through: :home_amenities
