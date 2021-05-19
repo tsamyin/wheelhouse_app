@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :home_amenities, only: [:new, :create, :edit, :update]
   end
 
-  resources :bookings, only: [:show, :destroy, :edit, :update]
+  resources :bookings, only: [:index, :show, :destroy, :edit, :update]
   resources :home_amenities, only: :destroy
 end
 
