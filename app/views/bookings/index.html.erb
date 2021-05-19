@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>My bookings</h1>
+  <% @bookings.each do |booking| %>
+    <div class="row">
+      <div class="col-4">
+        <p><strong><%= booking.tiny_home.name %></strong></p>
+        <p><%= booking.tiny_home.address %></p>
+        <div class="d-flex">
+          <p><%= booking.start_date %></p>
+          <p><%= booking.end_date %></p>
+        </div>
+        <p><%= booking.total_cost %></p>
+      </div>
+    </div>
+  <% end %>
+</div>

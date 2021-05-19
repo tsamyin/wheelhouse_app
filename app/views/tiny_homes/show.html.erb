@@ -6,33 +6,59 @@
 <p>Size: <%#= @tiny_home.size %></p> -->
 
 <!-- card -->
-  <div class="container">
+<div class="container pt-5 ">
+  <div class="tiny-title pl-5">
       <h2><%= @tiny_home.name %></h2>
     <div class="d-flex tiny_details">
       <p><%= @tiny_home.address %></p>
       <p><%= @tiny_home.address %></p>
     </div>
+  </div>
 
-    <div class="row justify-content-center">
-      <div class="col-12 col-lg-12">
-        <div class="card-tiny">
+  <div class="container">
+    <div class="row d-flex">
+      <div class="col-lg-6 px-0">
+        <div class="assembled-tiny" id="main-image">
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg", id="main-image-left" />
+        </div>
+      </div>
+      <div class="col-lg-3 px-0">
+        <div class="assembled-tiny">
           <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
-          <div class="card-tiny-infos">
-            <div>
-              <p><%= @tiny_home.description %></p>
-              <div class="d-flex tiny_details">
-                <p>Rooms: <%= @tiny_home.room_number %></p>
-                <p><%= @tiny_home.size %> sq.ft</p>
-              </div>
-            </div>
-            <h2 class="card-tiny-pricing"><%= @tiny_home.price %>$/day</h2>
-            <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-tiny-user avatar-bordered" />
-          </div>
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+        </div>
+      </div>
+      <div class="col-lg-3 px-0">
+        <div class="assembled-tiny">
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" id="main-top-left"/>
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" id="main-top-right"/>
         </div>
       </div>
     </div>
   </div>
-
-<% if policy(Booking).new? %>
-  <%= link_to 'Book', new_tiny_home_booking_path(@tiny_home) %>
-<% end %>
+<!-- Description =========== BOOKING -->
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-6">
+        <div class="card-tiny-infos">
+          <div>
+            <p><%= @tiny_home.description %></p>
+            <div class="d-flex tiny_details">
+              <p>Rooms: <%= @tiny_home.room_number %></p>
+              <p><%= @tiny_home.size %> sq.ft</p>
+              <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-tiny-user avatar-bordered" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 justify-content-flex-end">
+        
+        <% if policy(Booking).new? %>
+          <%= link_to 'Book', new_tiny_home_booking_path(@tiny_home), class: "btn btn-secondary" %>
+        <% end %>
+        <h2 class="card-tiny-pricing"><%= @tiny_home.price %>$/day</h2>
+      </div>
+    </div>
+  </div>
+  
+<!-- AMENITIES -->
