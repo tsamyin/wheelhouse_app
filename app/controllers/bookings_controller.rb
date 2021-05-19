@@ -2,7 +2,8 @@ class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
 
   def index
-    @bookings = Booking.all
+    # @bookings = Booking.all
+    @bookings = policy_scope(Booking).where(user: current_user).order(created_at: :desc)
   end
 
   def show
