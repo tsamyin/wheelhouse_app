@@ -42,6 +42,7 @@ amenities.each do |amenity|
   Amenity.create!(
     name: amenity[:name],
     description: amenity[:description],
+    icon: amenity[:icon]
   )
 end
 
