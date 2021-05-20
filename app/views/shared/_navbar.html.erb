@@ -8,10 +8,32 @@
   </button>
 
 
-  <div class="collapse navbar-collapse pr-5" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse px-5" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-        <li class="nav-item">
+
+        <li class="nav-item active">
+          <div class="container d-flex">
+            <div class="row pr-3">
+              <% unless controller_name == "pages" && action_name == "home" %>
+                <%= form_tag tiny_homes_path, method: :get do %>
+                  <%= text_field_tag :query,
+                    params[:query],
+                    class: "form-control",
+                    id: 'tiny_home_address',
+                    placeholder: "Location"
+                  %>
+              <% end %>
+            </div>
+            <div class="row pl-3">
+                <%= submit_tag "Search", class: "btn btn-primary" %>
+            </div>
+              <% end %>
+          </div>
+        </li>
+
+        <li class="nav-item active px-5">
+
           <%= link_to "Tiny Homes", tiny_homes_path, class: "nav-link" %>
         </li>
         <li class="nav-item pr-3">
