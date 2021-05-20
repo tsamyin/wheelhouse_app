@@ -18,19 +18,19 @@
     <div class="row d-flex">
       <div class="col-lg-6 px-0">
         <div class="assembled-tiny" id="main-image">
-          <img src="https://thelittlerebellion.com/wp-content/uploads/Sojourner-1-881x589-1.jpg", id="main-image-left" />
+          <% if @tiny_home.photos[0].present?%> <%= cl_image_tag @tiny_home.photos[0].key, crop: :fill %> <% end %>
         </div>
       </div>
       <div class="col-lg-3 px-0">
         <div class="assembled-tiny">
-          <img src="https://thelittlerebellion.com/wp-content/uploads/Sojourner-1-881x589-1.jpg" />
-          <img src="https://thelittlerebellion.com/wp-content/uploads/Sojourner-1-881x589-1.jpg" />
+          <% if @tiny_home.photos[1].present?%> <%= cl_image_tag @tiny_home.photos[1].key, crop: :fill %> <% end %>
+          <% if @tiny_home.photos[2].present?%> <%= cl_image_tag @tiny_home.photos[2].key, crop: :fill %> <% end %>
         </div>
       </div>
       <div class="col-lg-3 px-0">
         <div class="assembled-tiny">
-          <img src="https://thelittlerebellion.com/wp-content/uploads/Sojourner-1-881x589-1.jpg" id="main-top-left"/>
-          <img src="https://thelittlerebellion.com/wp-content/uploads/Sojourner-1-881x589-1.jpg" id="main-top-right"/>
+          <% if @tiny_home.photos[3].present?%> <%= cl_image_tag @tiny_home.photos[3].key, crop: :fill %> <% end %>
+          <% if @tiny_home.photos[4].present?%> <%= cl_image_tag @tiny_home.photos[4].key, crop: :fill %> <% end %>
         </div>
       </div>
     </div>

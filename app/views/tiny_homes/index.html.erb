@@ -10,7 +10,12 @@
     <% @my_tiny_homes.each do |tiny_home| %>
       <div class="col-4">
         <div class="card-trip">
-          <img src="https://thelittlerebellion.com/wp-content/uploads/Sojourner-1-881x589-1.jpg" />
+          <% if tiny_home.photos[0].present?%>
+            <%= cl_image_tag tiny_home.photos[0].key, crop: :fill %>
+          <% else %>
+            <img src="https://thelittlerebellion.com/wp-content/uploads/Sojourner-1-881x589-1.jpg" />
+          <% end %>
+
           <div class="d-flex card-trip-details">
             <% if policy(tiny_home).edit? %>
               <p class='pr-2'><%= link_to 'Edit', edit_tiny_home_path(tiny_home) %></p>
@@ -41,7 +46,11 @@
       <% @other_tiny_homes.each do |tiny_home| %>
       <div class="col-4">
         <div class="card-trip">
-          <img src="https://thelittlerebellion.com/wp-content/uploads/Sojourner-1-881x589-1.jpg" />
+          <% if tiny_home.photos[0].present?%>
+            <%= cl_image_tag tiny_home.photos[0].key, crop: :fill %>
+          <% else %>
+            <img src="https://thelittlerebellion.com/wp-content/uploads/Sojourner-1-881x589-1.jpg" />
+          <% end %>
           <div class="d-flex card-trip-details">
             <% if policy(tiny_home).edit? %>
               <p class='pr-2'><%= link_to 'Edit', edit_tiny_home_path(tiny_home) %></p>

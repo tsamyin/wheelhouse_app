@@ -1,46 +1,27 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-12 col-lg-4">
-      <div class="card-trip">
-        <%= cl_image_tag("https://res.cloudinary.com/dli73zoz7/image/upload/v1621371924/Wheelhouse/tiny_house_breezeway_ugacxf.jpg",
-              width: 400, height: 300, crop: :fill) %>
-        <div class="card-trip-infos">
-          <div>
-            <h2>Title here</h2>
-            <p>Short description here!</p>
+    <% @tiny_homes.all.first(3).each do |th| %>
+      <div class="col-12 col-lg-4">
+        <div class="card-trip">
+          <% if th.photos[0].present?%>
+            <%= cl_image_tag th.photos[0].key, crop: :fill %>
+          <% else %>
+            <img src="https://thelittlerebellion.com/wp-content/uploads/Sojourner-1-881x589-1.jpg" />
+          <% end %>
+          <div class="card-trip-infos">
+            <div>
+              <h2><%= th.name %></h2>
+              <p><%= th.description %></p>
+            </div>
+            <h2 class="card-trip-pricing">$<%= th.price %>/day</h2>
+            <% if th.photos[0].present?%>
+              <%= cl_image_tag th.user.avatar.key, crop: :fill, class: 'card-trip-user avatar-bordered' %>
+            <% else %>
+              <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+            <% end %>
           </div>
-          <h2 class="card-trip-pricing">300$/day</h2>
-          <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
         </div>
       </div>
-    </div>
-    <div class="col-12 col-lg-4">
-      <div class="card-trip">
-        <%= cl_image_tag("https://res.cloudinary.com/dli73zoz7/image/upload/v1621371703/Wheelhouse/tiny_house_spa_rqfzaa.jpg",
-              width: 400, height: 300, crop: :fill) %>
-        <div class="card-trip-infos">
-          <div>
-            <h2>Title here</h2>
-            <p>Short description here!</p>
-          </div>
-          <h2 class="card-trip-pricing">300$/day</h2>
-          <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-lg-4">
-      <div class="card-trip">
-        <%= cl_image_tag("https://res.cloudinary.com/dli73zoz7/image/upload/v1621371925/Wheelhouse/tiny_house_timbercraft_kz0jgf.jpg",
-              width: 400, height: 300, crop: :fill) %>
-        <div class="card-trip-infos">
-          <div>
-            <h2>Title here</h2>
-            <p>Short description here!</p>
-          </div>
-          <h2 class="card-trip-pricing">300$/day</h2>
-          <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
-        </div>
-      </div>
-    </div>
+    <% end %>
   </div>
 </div>
