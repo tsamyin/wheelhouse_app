@@ -22,7 +22,6 @@ class TinyHomesController < ApplicationController
         image_url: helpers.asset_url('map_marker.svg')
       }
     end
-
   end
 
   def new
@@ -70,7 +69,11 @@ class TinyHomesController < ApplicationController
   end
 
   def my_index
-    @my_tiny_homes = policy_scope(TinyHome).where(user: current_user)
+    @my_tiny_homes = TinyHome.all.where(user: current_user)
+    authorize @my_tiny_homes
+    # @my_tiny_homes = policy_scope(TinyHome)#.where(user: current_user)
+    # @my_tiny_homes = policy_scope(tiny_home_class, policy_scope_class: TinyHomePolicy::Scope)#.where(user: current_user)
+    # @my_tiny_homes = TinyHomePolicy::Scope.new(current_user, TinyHome).resolve
   end
 
   private
