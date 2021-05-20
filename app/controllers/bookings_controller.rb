@@ -33,7 +33,7 @@ class BookingsController < ApplicationController
 
   def update
     if @booking.update(booking_params)
-      redirect_to booking_path(@booking), notice: 'Your booking was successfully updated.'
+      redirect_to bookings_path, notice: 'Your booking was successfully updated.'
     else
       render :edit
     end
@@ -41,7 +41,7 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking.destroy
-    redirect_to tiny_homes_path, notice: 'Your booking was successfully cancelled.'
+    redirect_to bookings_path, notice: 'Your booking was successfully cancelled.'
   end
 
   private

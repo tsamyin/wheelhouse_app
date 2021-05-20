@@ -1,19 +1,25 @@
-<%= simple_form_for(@tiny_home) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<div class="container">
+  <div class="row justify-content-center py-4">
+    <div class="col-6">
+      <%= simple_form_for(@tiny_home) do |f| %>
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.input :name, label: 'Name:' %>
-    <%= f.input :address, label: 'Address:' %>
-    <%= f.input :description, label: 'Description:' %>
-<!--     <%#= f.select :available, [true, false] %> -->
-    <%= f.input :price, label: 'Price ($ per day):' %>
-    <%= f.input :room_number, label: 'Number of rooms:' %>
-    <%= f.input :size, label: 'Size (sq ft):' %>
-    <%= f.input :photo, as: :file, input_html: { multiple: true }, label: 'Images:' %>
-  </div>
+        <div class="form-inputs">
+          <%= f.input :name, label: 'Name:' %>
+          <%= f.input :address, label: 'Address:' %>
+          <%= f.input :description, label: 'Description:' %>
+      <!--     <%#= f.select :available, [true, false] %> -->
+          <%= f.input :price, label: 'Price ($ per day):' %>
+          <%= f.input :room_number, label: 'Number of rooms:' %>
+          <%= f.input :size, label: 'Size (sq ft):' %>
+          <%= f.input :photo, as: :file, input_html: { multiple: true }, label: 'Images:' %>
+        </div>
 
-  <div class="form-actions btn btn-secondary">
-    <%= f.button :submit %>
+        <div class="form-actions btn btn-secondary">
+          <%= f.button :submit %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
