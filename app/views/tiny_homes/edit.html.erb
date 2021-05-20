@@ -1,5 +1,10 @@
-<h1>Editing <%= @tiny_home.name %></h1>
-
-<%= render 'form', tiny_home: @tiny_home %>
-<%= link_to 'Show', @tiny_home %> |
-<%= link_to 'Back', tiny_homes_path %>
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-12">
+      <h1 style="text-align: center">Editing <%= @tiny_home.name %></h1>
+      <%= render 'form', tiny_home: @tiny_home %>
+      <%#= link_to 'Show', @tiny_home %> |
+      <%#= link_to 'Back', tiny_homes_path %>
+    </div>
+  </div>
+</div>
