@@ -41,40 +41,43 @@
   <h1 style="text-align: center">Explore nearby</h1>
 </div>
 
-<div class="container" id="cards_and_map">
-  <div class="row">
-      <% @other_tiny_homes.each do |tiny_home| %>
-      <div class="col-4">
-        <div class="card-trip">
-          <% if tiny_home.photos[0].present?%>
-            <%= cl_image_tag tiny_home.photos[0].key, crop: :fill %>
-          <% else %>
-            <img src="https://thelittlerebellion.com/wp-content/uploads/Sojourner-1-881x589-1.jpg" />
+<div class="main-container">
+  <!-- <div class="row"> -->
+    <div class="cards">
+
+    <!-- CARD -->
+    <% @other_tiny_homes.each do |tiny_home| %>
+      <div class="card-trip">
+        <% if tiny_home.photos[0].present?%>
+          <%= cl_image_tag tiny_home.photos[0].key, crop: :fill %>
+        <% else %>
+          <img src="https://thelittlerebellion.com/wp-content/uploads/Sojourner-1-881x589-1.jpg" />
+        <% end %>
+        <div class="d-flex card-trip-details">
+          <% if policy(tiny_home).edit? %>
+            <p class='pr-2'><%= link_to 'Edit', edit_tiny_home_path(tiny_home) %></p>
           <% end %>
-          <div class="d-flex card-trip-details">
-            <% if policy(tiny_home).edit? %>
-              <p class='pr-2'><%= link_to 'Edit', edit_tiny_home_path(tiny_home) %></p>
-            <% end %>
-            <% if policy(tiny_home).destroy? %>
-              <p class=''><%= link_to 'Delete', tiny_home_path(tiny_home), method: :delete %></p>
-            <% end %>
-          </div>
-          <div class="card-trip-infos">
-            <div>
-              <h2><%= link_to tiny_home.name, tiny_home_path(tiny_home) %></h2>
-              <p><%= tiny_home.description.capitalize %></p>
-            </div>
-            <h2 class="card-trip-pricing">$<%= tiny_home.price %>/day</h2>
+          <% if policy(tiny_home).destroy? %>
+            <p class=''><%= link_to 'Delete', tiny_home_path(tiny_home), method: :delete %></p>
+          <% end %>
+        </div>
+        <div class="card-trip-infos">
+          <div>
+            <h2><%= link_to tiny_home.name, tiny_home_path(tiny_home) %></h2>
+            <p><%= tiny_home.description.capitalize %></p>
           </div>
           <h2 class="card-trip-pricing">$<%= tiny_home.price %>/day</h2>
         </div>
       </div>
     <% end %>
+    </div>
 
+    <!-- MAP -->
     <div id="map"
-      style="width: 100%; height: 300px;"
+      style="width: 100%; height: 100vh;"
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
-<!--   </div> -->
+
+  <!-- </div> -->
 </div>
