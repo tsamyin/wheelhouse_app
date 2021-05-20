@@ -1,10 +1,5 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require "open-uri"
+
 puts 'cleaning db!'
 HomeAmenity.destroy_all
 Amenity.destroy_all
@@ -55,10 +50,13 @@ puts 'creating users...'
 emails = ['pascal@th.com', 'holly@th.com', 'thomas@th.com', 'joe@average.com', 'jess@google.com']
 
 emails.each do |email|
-  user = User.create!(
+  user = User.new(
     email: email,
     password: '123456'
   )
+  file = URI.open("https://t4.ftcdn.net/jpg/04/10/43/77/360_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg")
+  user.avatar.attach(io: file, filename: "avatar.jpg", content_type: 'image/png')
+  user.save!
 end
 puts "#{User.all.count} users created!"
 
@@ -67,25 +65,25 @@ puts 'creating tiny homes...'
 
 th_details = [
   { name: 'Peaceful Getaway', description: 'cozy energy', address: 'Montreal, QC, Canada',
-    },
+    images: ['https://cdn.shopify.com/s/files/1/1561/8759/files/Orono_Debut_Tiny_House_on_Wheels_by_Evergreen_Tiny_Homes_1024x1024.jpg?v=1547149787']},
   { name: "Rock n' Roll Roadie", description: 'country vibes', address: 'Laval, QC, Canada',
-    },
+    images: ["https://lookout.brightspotcdn.com/dims4/default/e96fc0d/2147483647/strip/true/crop/3600x2401+0+0/resize/840x560!/quality/90/?url=http%3A%2F%2Flookout-local-brightspot.s3.amazonaws.com%2F4d%2F14%2F102996ea41b2b225bd97bf4f6a20%2F97a1194.jpg"]},
   { name: 'Earthy Escape', description: 'eco-friendly choices', address: 'St. Jerome, QC, Canada',
-    },
+    images: ['https://opimedia.azureedge.net/-/media/Images/MEN/Editorial/Special-Projects/Issues/2016/06-01/Tiny-Home-Ideas-for-Inspired-Affordable-Homes-on-Wheels/TinyHomes-10-jpg.jpg?h=367&w=550&la=en&hash=4DCBEE6688B1C1F76009D4E0DDDB112BEE00F6E0']},
   { name: 'Surfer Retreat', description: 'radical wave hunter', address: 'Miami, Florida, USA',
-    },
+    images: ['https://cdn1.theinertia.com/wp-content/uploads/2016/06/SB_EDITED.jpg']},
   { name: 'Family Blastoff!', description: 'many hidden compartments', address: 'Halifax, NS, Canada',
-    },
+    images: ['https://cdn.shopify.com/s/files/1/1561/8759/files/4The_20_Ynez_Tiny_House_on_Wheels_by_Timbercraft_Tiny_Homes_1024x1024.jpg?v=1524231455']},
   { name: 'Pet Planet', description: 'great for you and your pet pal', address: 'Toronto, ON, Canada',
-    },
+    images: ['https://cdn.shopify.com/s/files/1/1561/8759/files/Orono_Debut_Tiny_House_on_Wheels_by_Evergreen_Tiny_Homes_1024x1024.jpg?v=1547149787']},
   { name: 'Awesome Tiny Home', description: 'everything you need!', address: 'Kingston, ON, Canada',
-    },
+    images: ['https://cdn.shopify.com/s/files/1/1561/8759/files/1_30_Breezeway_Tiny_House_on_Wheels_by_Tiny_Heirloom_1024x1024.jpg?v=1525655500']},
   { name: 'Man Cave To-Go', description: 'peaceful bro escape', address: 'Ajax, ON, Canada',
-    },
+    images: ['https://images.dwell.com/photos-6133553759298379776/6377628355801133056-large/the-mohican-tiny-home-has-a-starting-price-of-dollar62000-and-its-made-by-amish-craftsmen-in-ohio-the-20-tiny-home-which-can-be-built-in-as-little-as-eight-weeks-has-an-unfinished-exterior-and-a-light-and-bright-minimalist-interior-that-packs-all-the-esse.jpg']},
   { name: 'We <3 Travel', description: 'pack up and go real quick!', address: 'New Jersey, NY, USA',
-    },
+    images: ['https://images.dwell.com/photos-6133553759298379776/6377631386980962304-large/the-340-square-foot-greenmoxie-tiny-house-is-sustainably-built-and-it-can-operate-completely-off-the-grid-prices-for-the-customizable-dwelling-start-at-dollar65000.jpg']},
   { name: 'Toasty Road Home', description: 'great for winter escapes', address: 'North Bay, ON, Canada',
-    } ]
+    images: ['https://i.insider.com/5fb6d53150e71a00115564d3?width=700']} ]
 
 th_details.each do |th|
   tiny_home = TinyHome.new(
@@ -96,6 +94,10 @@ th_details.each do |th|
     price: rand(50..100),
     size: [80, 90, 100, 110, 120].sample
   )
+  th[:images].each do |image|
+    file = URI.open("#{image}")
+    tiny_home.photos.attach(io: file, filename: "#{image.last(8)}", content_type: 'image/png')
+  end
   tiny_home.user = User.all.sample
   tiny_home.save!
 end
