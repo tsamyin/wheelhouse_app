@@ -1,12 +1,13 @@
-<div class="container">
-  <h1 class="">Explore nearby</h1>
+<div class="container pt-3">
+  <h1 class ="">My Tiny Homes</h1>
   <% if policy(TinyHome).new? %>
     <%= link_to 'Add a Tiny Home', new_tiny_home_path, class: 'btn btn-secondary' %>
   <% end %>
+</div>
+<div class="container">
   <div class="row">
-
 <!-- tiny home cards -->
-    <% @tiny_homes.each do |tiny_home| %>
+    <% @my_tiny_homes.each do |tiny_home| %>
       <div class="col-4">
         <div class="card-trip">
           <img src="https://thelittlerebellion.com/wp-content/uploads/Sojourner-1-881x589-1.jpg" />
@@ -21,7 +22,7 @@
           <div class="card-trip-infos">
             <div>
               <h2><%= link_to tiny_home.name, tiny_home_path(tiny_home) %></h2>
-              <p><%= tiny_home.description %></p>
+              <p><%= tiny_home.description.capitalize %></p>
             </div>
             <h2 class="card-trip-pricing">$<%= tiny_home.price %>/day</h2>
           </div>
@@ -29,5 +30,35 @@
       </div>
     <% end %>
   </div>
+</div>
 
+<div class="container pt-3">
+  <h1 class="">Explore nearby</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+      <% @other_tiny_homes.each do |tiny_home| %>
+      <div class="col-4">
+        <div class="card-trip">
+          <img src="https://thelittlerebellion.com/wp-content/uploads/Sojourner-1-881x589-1.jpg" />
+          <div class="d-flex card-trip-details">
+            <% if policy(tiny_home).edit? %>
+              <p class='pr-2'><%= link_to 'Edit', edit_tiny_home_path(tiny_home) %></p>
+            <% end %>
+            <% if policy(tiny_home).destroy? %>
+              <p class=''><%= link_to 'Delete', tiny_home_path(tiny_home), method: :delete %></p>
+            <% end %>
+          </div>
+          <div class="card-trip-infos">
+            <div>
+              <h2><%= link_to tiny_home.name, tiny_home_path(tiny_home) %></h2>
+              <p><%= tiny_home.description.capitalize %></p>
+            </div>
+            <h2 class="card-trip-pricing">$<%= tiny_home.price %>/day</h2>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
