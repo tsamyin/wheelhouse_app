@@ -24,4 +24,9 @@ class TinyHomePolicy < ApplicationPolicy
   def destroy?
     record.bookings.empty? && record.user == user
   end
+
+  def my_index?
+    true
+    # raise
+  end
 end
