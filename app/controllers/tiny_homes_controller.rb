@@ -30,11 +30,16 @@ class TinyHomesController < ApplicationController
     authorize @tiny_home
   end
 
+# params[:tiny_home][:amenity_ids]
+
   def create
     @tiny_home = TinyHome.new(tiny_home_params)
     @tiny_home.user = current_user
     authorize @tiny_home
     if @tiny_home.save
+      params[:tiny_home][:amenity_ids].each do |id|
+        HomeAmenity.create!(tiny_home_id: @tiny_home.id, amenity_id: id) unless id == ''
+      end
       redirect_to tiny_home_path(@tiny_home), notice: 'Your tiny home was successfully created.'
     else
       render :new
@@ -73,6 +78,6 @@ class TinyHomesController < ApplicationController
 
   def tiny_home_params
     params.require(:tiny_home).permit(:name, :address, :description, :available,
-                                      :price, :room_number, :size, :user_id, photos: [])
+                                      :price, :room_number, :size, :user_id, :amenity_ids, photos: [])
   end
 end
