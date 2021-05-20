@@ -2,12 +2,15 @@
 @import "home";
 @import "show";
 
-#cards_and_map {
+.main-container {
   display: flex;
 }
 
+.cards {
+  flex-grow: 1;
+}
+
 #map {
-  height: 100vh;
   position: sticky;
   top: 0;
 }

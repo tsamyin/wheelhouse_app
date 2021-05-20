@@ -64,6 +64,10 @@ class TinyHomesController < ApplicationController
     redirect_to tiny_homes_path, notice: 'Your tiny home was successfully deleted.'
   end
 
+  def my_index
+    @my_tiny_homes = policy_scope(TinyHome).where(user: current_user)
+  end
+
   private
 
   def set_tiny_home
