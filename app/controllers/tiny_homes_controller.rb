@@ -5,7 +5,24 @@ class TinyHomesController < ApplicationController
   def index
     # @tiny_homes = TinyHome.all
     @my_tiny_homes = policy_scope(TinyHome).where(user: current_user)
-    @other_tiny_homes = policy_scope(TinyHome).where.not(user: current_user)
+    # @other_tiny_homes = policy_scope(TinyHome).where.not(user: current_user)
+
+    if params[:query].present?
+      sql_query = "address @@ :query"
+      # @other_tiny_homes = policy_scope(TinyHome).where(sql_query, query: "%#{params[:query]}%")
+      @other_tiny_homes = policy_scope(TinyHome).near(params[:query], 50)
+    else
+      @other_tiny_homes = policy_scope(TinyHome).where.not(user: current_user)
+    end
+
+    @markers = @other_tiny_homes.geocoded.map do |other_tiny_home| {
+        lat: other_tiny_home.latitude,
+        lng: other_tiny_home.longitude,
+        infoWindow: render_to_string(partial: "info_window_index", locals: { other_tiny_home: other_tiny_home }),
+        image_url: helpers.asset_url('map_marker.svg')
+      }
+    end
+
   end
 
   def new
@@ -25,15 +42,12 @@ class TinyHomesController < ApplicationController
   end
 
   def show
-    @tiny_homes = TinyHome.all
-    @markers = @tiny_homes.geocoded.map do |tiny_home|
-      {
+    @marker = [{
         lat: @tiny_home.latitude,
         lng: @tiny_home.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { tiny_home: @tiny_home }),
+        infoWindow: render_to_string(partial: "info_window_show", locals: { tiny_home: @tiny_home }),
         image_url: helpers.asset_url('map_marker.svg')
-      }
-    end
+      }]
   end
 
   def edit

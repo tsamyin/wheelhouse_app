@@ -8,17 +8,39 @@
   </button>
 
 
-  <div class="collapse navbar-collapse pr-5" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse px-5" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-        <li class="nav-item active pr-5">
+
+        <li class="nav-item active">
+          <div class="container d-flex">
+            <div class="row pr-3">
+              <% unless controller_name == "pages" && action_name == "home" %>
+                <%= form_tag tiny_homes_path, method: :get do %>
+                  <%= text_field_tag :query,
+                    params[:query],
+                    class: "form-control",
+                    id: 'tiny_home_address',
+                    placeholder: "Location"
+                  %>
+              <% end %>
+            </div>
+            <div class="row pl-3">
+                <%= submit_tag "Search", class: "btn btn-primary" %>
+            </div>
+              <% end %>
+          </div>
+        </li>
+
+        <li class="nav-item active px-5">
+
           <%= link_to "Tiny Homes", tiny_homes_path, class: "nav-link" %>
         </li>
-<!--         <li class="nav-item">
-          <%#= link_to "Messages", "#", class: "nav-link" %>
-        </li> -->
+        <li class="nav-item pr-3">
+          <%= link_to "Add Your Tiny Home", new_tiny_home_path, class: "nav-link" %>
+        </li>
         <li class="nav-item dropdown">
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <%= cl_image_tag current_user.avatar.key, crop: :fill, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "My bookings", bookings_path, class: "dropdown-item" %>
             <%= link_to "My profile", "#", class: "dropdown-item" %>
