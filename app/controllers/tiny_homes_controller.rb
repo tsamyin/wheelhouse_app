@@ -4,7 +4,8 @@ class TinyHomesController < ApplicationController
 
   def index
     # @tiny_homes = TinyHome.all
-    @tiny_homes = policy_scope(TinyHome).order(created_at: :desc)
+    @my_tiny_homes = policy_scope(TinyHome).where(user: current_user)
+    @other_tiny_homes = policy_scope(TinyHome).where.not(user: current_user)
   end
 
   def new
@@ -24,6 +25,15 @@ class TinyHomesController < ApplicationController
   end
 
   def show
+    @tiny_homes = TinyHome.all
+    @markers = @tiny_homes.geocoded.map do |tiny_home|
+      {
+        lat: @tiny_home.latitude,
+        lng: @tiny_home.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { tiny_home: @tiny_home }),
+        image_url: helpers.asset_url('map_marker.svg')
+      }
+    end
   end
 
   def edit
@@ -48,6 +58,7 @@ class TinyHomesController < ApplicationController
   end
 
   def tiny_home_params
-    params.require(:tiny_home).permit(:name, :address, :description, :available, :price, :room_number, :size, :user_id, :photo)
+    params.require(:tiny_home).permit(:name, :address, :description, :available,
+                                      :price, :room_number, :size, :user_id, photos: [])
   end
 end

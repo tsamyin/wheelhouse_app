@@ -2,7 +2,8 @@ class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
 
   def index
-    @bookings = Booking.all
+    # @bookings = Booking.all
+    @bookings = policy_scope(Booking).where(user: current_user).order(created_at: :desc)
   end
 
   def show
@@ -32,7 +33,7 @@ class BookingsController < ApplicationController
 
   def update
     if @booking.update(booking_params)
-      redirect_to booking_path(@booking), notice: 'Your booking was successfully updated.'
+      redirect_to bookings_path, notice: 'Your booking was successfully updated.'
     else
       render :edit
     end
@@ -40,7 +41,7 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking.destroy
-    redirect_to tiny_homes_path, notice: 'Your booking was successfully cancelled.'
+    redirect_to bookings_path, notice: 'Your booking was successfully cancelled.'
   end
 
   private
