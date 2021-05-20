@@ -9,7 +9,7 @@
           <%= f.input :name, label: 'Name:' %>
           <%= f.input :address, label: 'Address:' %>
           <%= f.input :description, label: 'Description:' %>
-      <!--     <%#= f.select :available, [true, false] %> -->
+          <%= f.association :amenities, as: :check_boxes, label: 'Amenities:' %>
           <%= f.input :price, label: 'Price ($ per day):' %>
           <%= f.input :room_number, label: 'Number of rooms:' %>
           <%= f.input :size, label: 'Size (sq ft):' %>

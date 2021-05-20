@@ -1,0 +1,5 @@
+<% if tiny_home.photos[0].present?%>
+  <%= cl_image_tag tiny_home.photos[0].key, crop: :fill %>
+<% end %>
+<h2><%= tiny_home.name %></h2>
+<p><%= tiny_home.address %></p>
