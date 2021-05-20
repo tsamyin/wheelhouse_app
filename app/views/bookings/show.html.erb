@@ -2,8 +2,8 @@
   <div class="row justify-content-center">
     <div class="col-8 my-4">
       <h1><%= @booking.tiny_home.name %></h1>
-      <p>From: <%= @booking.start_date %> To: <%= @booking.end_date %></p>
-      <b>Total: $<%= @booking.total_cost %> </b>
+      <p>FROM <%= @booking.start_date %> TO <%= @booking.end_date %></p>
+      <b>TOTAL: $<%= @booking.total_cost %> </b>
     </div>
     <div class="col-8 my-5">
       <% if policy(@booking).edit? %>
