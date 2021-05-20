@@ -52,6 +52,7 @@ class TinyHomesController < ApplicationController
         infoWindow: render_to_string(partial: "info_window_show", locals: { tiny_home: @tiny_home }),
         image_url: helpers.asset_url('map_marker.svg')
       }]
+    @booking = Booking.new
   end
 
   def edit

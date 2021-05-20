@@ -41,19 +41,19 @@
       <div class="col-6">
         <div class="card-tiny-infos">
           <div>
+            <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-tiny-user avatar-bordered" />
             <p><%= @tiny_home.description.capitalize %></p>
+        <h2 class="card-tiny-pricing"><b><%= @tiny_home.price %>$/day</b></h2>
             <div class="d-flex tiny_details">
               <p>Rooms: <%= @tiny_home.room_number %></p>
               <p><%= @tiny_home.size %> sq.ft</p>
-              <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-tiny-user avatar-bordered" />
             </div>
           </div>
         </div>
       </div>
       <div class="col-6 justify-content-flex-end">
-        <h2 class="card-tiny-pricing"><b><%= @tiny_home.price %>$/day</b></h2>
         <% if policy(Booking).new? %>
-          <%= link_to 'Book', new_tiny_home_booking_path(@tiny_home), class: "btn btn-secondary" %>
+          <%= render 'bookings/form', tiny_home: @tiny_home, booking: @booking %>|
         <% end %>
       </div>
     </div>
