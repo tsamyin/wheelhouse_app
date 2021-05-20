@@ -1,8 +1,8 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),
   url( <%= asset_path 'wheelhouse_banner.jpg' %> );">
 
-  <div class="container d-flex justify-content-center my-5">
-    <div class="w-75 px-2">
+  <div class="container d-flex justify-content-start my-5" id="main-search">
+    <div class="w-50 px-2">
       <%= form_tag tiny_homes_path, method: :get do %>
         <%= text_field_tag :query,
           params[:query],
@@ -12,7 +12,7 @@
         %>
     </div>
     <div class="w-25 px-2">
-        <%= submit_tag "Search", class: "btn btn-primary" %>
+        <%= submit_tag "Search", class: "btn btn-secondary" %>
       <% end %>
     </div>
   </div>
