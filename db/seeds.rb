@@ -66,16 +66,26 @@ puts "#{User.all.count} users created!"
 puts 'creating tiny homes...'
 
 th_details = [
-  { name: 'Peaceful Getaway', description: 'cozy energy', address: 'Montreal, QC, Canada'},
-  { name: "Rock n' Roll Roadie", description: 'country vibes', address: 'Laval, QC, Canada'},
-  { name: 'Earthy Escape', description: 'eco-friendly choices', address: 'St. Jerome, QC, Canada'},
-  { name: 'Surfer Retreat', description: 'radical wave hunter', address: 'Miami, Florida, USA'},
-  { name: 'Family Blastoff!', description: 'many hidden compartments', address: 'Halifax, NS, Canada'},
-  { name: 'Pet Planet', description: 'great for you and your pet pal', address: 'Toronto, ON, Canada'},
-  { name: 'Awesome Tiny Home', description: 'everything you need!', address: 'Kingston, ON, Canada'},
-  { name: 'Man Cave To-Go', description: 'peaceful bro escape', address: 'Ajax, ON, Canada'},
-  { name: 'We <3 Travel', description: 'pack up and go real quick!', address: 'New Jersey, NY, USA'},
-  { name: 'Toasty Road Home', description: 'great for winter escapes', address: 'North Bay, ON, Canada'} ]
+  { name: 'Peaceful Getaway', description: 'cozy energy', address: 'Montreal, QC, Canada',
+    },
+  { name: "Rock n' Roll Roadie", description: 'country vibes', address: 'Laval, QC, Canada',
+    },
+  { name: 'Earthy Escape', description: 'eco-friendly choices', address: 'St. Jerome, QC, Canada',
+    },
+  { name: 'Surfer Retreat', description: 'radical wave hunter', address: 'Miami, Florida, USA',
+    },
+  { name: 'Family Blastoff!', description: 'many hidden compartments', address: 'Halifax, NS, Canada',
+    },
+  { name: 'Pet Planet', description: 'great for you and your pet pal', address: 'Toronto, ON, Canada',
+    },
+  { name: 'Awesome Tiny Home', description: 'everything you need!', address: 'Kingston, ON, Canada',
+    },
+  { name: 'Man Cave To-Go', description: 'peaceful bro escape', address: 'Ajax, ON, Canada',
+    },
+  { name: 'We <3 Travel', description: 'pack up and go real quick!', address: 'New Jersey, NY, USA',
+    },
+  { name: 'Toasty Road Home', description: 'great for winter escapes', address: 'North Bay, ON, Canada',
+    } ]
 
 th_details.each do |th|
   tiny_home = TinyHome.new(
