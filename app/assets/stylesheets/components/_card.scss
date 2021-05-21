@@ -154,6 +154,9 @@
     display: flex;
     justify-content: space-between;
   }
+  &_title_icon {
+    padding-right: 16px;
+  }
   &_content {
     width: calc(100% - 300px);
     padding-left: 16px;
