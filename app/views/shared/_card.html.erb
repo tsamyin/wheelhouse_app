@@ -1,27 +1,28 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <% @tiny_homes.all.first(3).each do |th| %>
-      <div class="col-12 col-lg-4">
-        <div class="card-trip">
-          <% if th.photos[0].present?%>
-            <%= cl_image_tag th.photos[0].key, crop: :fill %>
-          <% else %>
-            <img src="https://thelittlerebellion.com/wp-content/uploads/Sojourner-1-881x589-1.jpg" />
-          <% end %>
-          <div class="card-trip-infos">
-            <div>
-              <h2><%= link_to th.name, tiny_home_path(th) %></h2>
-              <p><%= th.description %></p>
-            </div>
-            <h2 class="card-trip-pricing">$<%= th.price %>/day</h2>
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <% @tiny_homes.all.first(3).each do |th| %>
+        <div class="col-12 col-lg-4">
+          <div class="card-trip">
             <% if th.photos[0].present?%>
-              <%= cl_image_tag th.user.avatar.key, crop: :fill, class: 'card-trip-user avatar-bordered' %>
+              <%= cl_image_tag th.photos[0].key, crop: :fill %>
             <% else %>
-              <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+              <img src="https://thelittlerebellion.com/wp-content/uploads/Sojourner-1-881x589-1.jpg" />
             <% end %>
+            <div class="card-trip-infos">
+              <div>
+                <h2><%= link_to th.name, tiny_home_path(th) %></h2>
+                <p><%= th.description %></p>
+              </div>
+              <h2 class="card-trip-pricing">$<%= th.price %>/day</h2>
+              <% if th.photos[0].present?%>
+                <%= cl_image_tag th.user.avatar.key, crop: :fill, class: 'card-trip-user avatar-bordered' %>
+              <% else %>
+                <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+              <% end %>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
