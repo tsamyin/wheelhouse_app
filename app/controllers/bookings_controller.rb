@@ -7,6 +7,7 @@ class BookingsController < ApplicationController
   end
 
   def show
+    @review = Review.find_by(booking_id: @booking.id)
   end
 
   def new
