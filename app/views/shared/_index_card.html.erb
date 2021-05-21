@@ -1,4 +1,4 @@
-<div class="card-product">
+<!-- <div class="card-product">
   <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
   <div class="card-product-infos">
     <div class="title-place">
@@ -9,7 +9,7 @@
     </div>
 
   </div>
-</div>
+</div> -->
 
 <div class="cards">
 
@@ -33,20 +33,29 @@
             <div class="card_product_title_icon">
               <%= image_tag "icon-heart.svg"%>
             </div>
-            <div class="separator">
+          </div>
+          <div class="separator">
+          </div>
 
+          <div class="card_product_description">
+            <p><%= tiny_home.description.capitalize %></p>
+          </div>
+          <div class="card_product_element">
+            <div class="card_product_element_amenities">
+<!--               <ul>
+                <%# @tiny_home.amenities.each do |amenity| %>
+                  <li class="card_product_element_amenities_text">
+                    <i class='<%#= amenity.icon %>'></i>
+                    <p><%#= amenity.name.capitalize %></p>
+                  </li>
+                <%# end %>
+              </ul> -->
             </div>
-
-            <div class="card_product_description">
-              <p><%= tiny_home.description.capitalize %></p>
-            </div>
-            <div class="amenities">
-
-            </div>
-            <div class="card_product_price">
+            <div class="card_product_element_price">
               <h2 class="card_product_pricing">$<%= tiny_home.price %>/day</h2>
             </div>
-            <div class="d-flex card_product_details">
+          </div>
+            <div class="d-flex card_product_element_details">
               <% if policy(tiny_home).edit? %>
                 <p class='pr-2'><%= link_to 'Edit', edit_tiny_home_path(tiny_home) %></p>
               <% end %>
@@ -54,7 +63,6 @@
                 <p class=''><%= link_to 'Delete', tiny_home_path(tiny_home), method: :delete %></p>
               <% end %>
             </div>
-          </div>
         </div>
       </div>
     </div>
