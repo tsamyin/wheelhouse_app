@@ -33,7 +33,7 @@
       <p><b>Comment:</b> <%= @booking.review.comment %></p>
       <p><b>Star:</b> <%= @booking.review.star %></p>
 
-      <%#= link_to 'Edit review', edit_review_path(@review), class: 'btn btn-secondary' %>
+      <%= link_to 'Edit review', edit_review_path(@review), class: 'btn btn-secondary' %>
 
       <%= link_to 'Delete review', review_path(@review), method: :delete, class: 'btn btn-secondary' %>
     </div>

@@ -14,7 +14,7 @@ class ReviewPolicy < ApplicationPolicy
   end
 
   def update?
-    record.user == user
+    record.booking.user == user
   end
 
   def destroy?
