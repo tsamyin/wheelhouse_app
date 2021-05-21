@@ -15,34 +15,46 @@
 
   <!-- CARD -->
   <% @other_tiny_homes.each do |tiny_home| %>
-    <div class="card-product">
-      <% if tiny_home.photos[0].present?%>
-        <%= cl_image_tag tiny_home.photos[0].key, crop: :fill %>
-      <% else %>
-        <img src="https://thelittlerebellion.com/wp-content/uploads/Sojourner-1-881x589-1.jpg" />
-      <% end %>
-      <div class="d-flex card-product-details">
-        <% if policy(tiny_home).edit? %>
-          <p class='pr-2'><%= link_to 'Edit', edit_tiny_home_path(tiny_home) %></p>
-        <% end %>
-        <% if policy(tiny_home).destroy? %>
-          <p class=''><%= link_to 'Delete', tiny_home_path(tiny_home), method: :delete %></p>
-        <% end %>
-      </div>
-      <div class="card-product-infos">
-        <div class="tiny_title">
-          <p><%= tiny_home.address %></p>
-          <h2><%= link_to tiny_home.name, tiny_home_path(tiny_home) %></h2>
+    <div class="card_product">
+      <div class="card_product_item">
+        <div class="card_product_image">
+          <% if tiny_home.photos[0].present?%>
+            <%= cl_image_tag tiny_home.photos[0].key, crop: :fill %>
+          <% else %>
+            <img src="https://thelittlerebellion.com/wp-content/uploads/Sojourner-1-881x589-1.jpg" />
+          <% end %>
         </div>
+        <div class="card_product_content">
+          <div class="card_product_title">
+            <div class="card_product_icon_text">
+              <p><%= tiny_home.address %></p>
+              <h2><%= link_to tiny_home.name, tiny_home_path(tiny_home) %></h2>
+            </div>
+            <div class="card_product_title_icon">
+              <%= image_tag "icon-heart.svg"%>
+            </div>
+            <div class="separator">
 
-        <div class="description">
-          <p><%= tiny_home.description.capitalize %></p>
-        </div>
-        <div class="amenities">
+            </div>
 
-        </div>
-        <div class="price">
-          <h2 class="card-product-pricing">$<%= tiny_home.price %>/day</h2>
+            <div class="card_product_description">
+              <p><%= tiny_home.description.capitalize %></p>
+            </div>
+            <div class="amenities">
+
+            </div>
+            <div class="card_product_price">
+              <h2 class="card_product_pricing">$<%= tiny_home.price %>/day</h2>
+            </div>
+            <div class="d-flex card_product_details">
+              <% if policy(tiny_home).edit? %>
+                <p class='pr-2'><%= link_to 'Edit', edit_tiny_home_path(tiny_home) %></p>
+              <% end %>
+              <% if policy(tiny_home).destroy? %>
+                <p class=''><%= link_to 'Delete', tiny_home_path(tiny_home), method: :delete %></p>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
     </div>

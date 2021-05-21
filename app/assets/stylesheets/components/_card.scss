@@ -133,35 +133,99 @@
 
 // ========== index cards=============
 
-.card-product {
-  overflow: hidden;
-  height: 120px;
-  background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  display: flex;
-  align-items: center;
+.card_product {
+  &_item {
+      border-top: 1px solid #ebebeb;
+      padding: 24px 0;
+      display: flex;
+  }
+  &_image {
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    img {
+      object-fit: cover;
+      widows: 100%;
+      height: 100%;
+    }
+  }
+  &_title {
+    display: flex;
+    justify-content: space-between;
+    // button {
+    //   background: none;
+    //   outine: none;
+    //   position: relative;
+    //   display: flex;
+    //   align-items: center;
+    //   justify-content: center;
+    //   position: relative;
+    //   padding: 0;
+    //   &after {
+    //     position: absolute;
+    //     content: '';
+    //     width: 48px;
+    //     height: 48px;
+    //     border-radius: 50%;
+    //     z-index: -1;
+    //   }
+    // }
+  }
+  &_content {
+    width: calc(100% - 300px);
+    padding-left: 16px;
+  }
+  &_descripton {
+    padding-top: 16px;
+    p {
+      display: block;
+      margin-bottom: 4px;
+    }
+  }
 }
 
-.card-product img {
-  height: 100%;
-  width: 120px;
-  object-fit: cover;
+.greyText {
+   fontsize: 14px;
+   line-height: 18px;
 }
 
-.card-product h2 {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0;
+.seperator {
+  width: 32px;
+  height: 1px;
+  color: rgba(0,0,0,0.4);
 }
 
-.card-product p {
-  font-size: 12px;
-  line-height: 1.4;
-  opacity: .7;
-  margin-bottom: 0;
-  margin-top: 8px;
-}
 
-.card-product .card-product-infos {
-  padding: 16px;
-}
+// .card-product {
+//   overflow: hidden;
+//   height: 120px;
+//   background: white;
+//   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+//   display: flex;
+//   align-items: center;
+// }
+
+// .card-product img {
+//   height: 100%;
+//   width: 120px;
+//   object-fit: cover;
+// }
+
+// .card-product h2 {
+//   font-size: 16px;
+//   font-weight: bold;
+//   margin: 0;
+// }
+
+// .card-product p {
+//   font-size: 12px;
+//   line-height: 1.4;
+//   opacity: .7;
+//   margin-bottom: 0;
+//   margin-top: 8px;
+// }
+
+// .card-product .card-product-infos {
+//   padding: 16px;
+// }
