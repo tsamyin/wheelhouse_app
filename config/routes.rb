@@ -9,7 +9,12 @@ Rails.application.routes.draw do
 
   get '/my_tiny_homes', to: 'tiny_homes#my_index'
 
-  resources :bookings, only: [:index, :show, :destroy, :edit, :update]
+  resources :bookings, only: [:index, :show, :destroy, :edit, :update] do
+    resources :reviews, only: [:new, :create]
+  end
+
+  resources :reviews, only: [:edit, :update, :destroy]
+
   resources :home_amenities, only: :destroy
 end
 
