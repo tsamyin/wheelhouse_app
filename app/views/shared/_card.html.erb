@@ -10,7 +10,7 @@
           <% end %>
           <div class="card-trip-infos">
             <div>
-              <h2><%= th.name %></h2>
+              <h2><%= link_to th.name, tiny_home_path(th) %></h2>
               <p><%= th.description %></p>
             </div>
             <h2 class="card-trip-pricing">$<%= th.price %>/day</h2>

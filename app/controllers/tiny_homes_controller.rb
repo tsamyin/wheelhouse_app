@@ -60,6 +60,7 @@ class TinyHomesController < ApplicationController
 
   def update
     if @tiny_home.update(tiny_home_params)
+    raise
       redirect_to tiny_home_path(@tiny_home), notice: 'Your tiny home was successfully updated.'
     end
   end

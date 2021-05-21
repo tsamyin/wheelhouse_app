@@ -7,14 +7,20 @@
 
 <!-- card -->
 <!-- <div class="container pt-5 "> -->
-  <div class="tiny-title pl-5">
-      <h2><%= @tiny_home.name %></h2>
-    <div class="d-flex tiny_details">
-      <p><%= @tiny_home.address %></p>
-    </div>
-  </div>
-
   <div class="container">
+    <div class="tiny-title d-flex">
+      <div>
+        <h2><%= @tiny_home.name %></h2>
+        <div class="d-flex tiny_details">
+          <p><%= @tiny_home.address %></p>
+        </div>
+      </div>
+      <div>
+        <% if policy(@tiny_home).edit? %>
+          <%= link_to 'Edit booking', edit_tiny_home_path(@tiny_home), class: 'btn btn-secondary' %>
+        <% end %>
+      </div>
+    </div>
     <div class="row d-flex">
       <div class="col-lg-6 px-0">
         <div class="assembled-tiny" id="main-image">
@@ -41,9 +47,13 @@
       <div class="col-6">
         <div class="card-tiny-infos">
           <div>
-            <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-tiny-user avatar-bordered" />
+            <% if current_user.avatar.present?%>
+              <%= cl_image_tag current_user.avatar.key, crop: :fill, class: 'card-tiny-user avatar-bordered' %>
+            <% else %>
+              <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-tiny-user avatar-bordered" />
+            <% end %>
+            <h2 class="card-tiny-pricing"><b><%= @tiny_home.price %>$/day</b></h2>
             <p><%= @tiny_home.description.capitalize %></p>
-        <h2 class="card-tiny-pricing"><b><%= @tiny_home.price %>$/day</b></h2>
             <div class="d-flex tiny_details">
               <p>Rooms: <%= @tiny_home.room_number %></p>
               <p><%= @tiny_home.size %> sq.ft</p>
@@ -53,7 +63,7 @@
       </div>
       <div class="col-6 justify-content-flex-end">
         <% if policy(Booking).new? %>
-          <%= render 'bookings/form', tiny_home: @tiny_home, booking: @booking %>|
+          <%= render 'bookings/form', tiny_home: @tiny_home, booking: @booking %>
         <% end %>
       </div>
     </div>
@@ -64,16 +74,13 @@
   <div class="container mt-3 pt-3 border-top">
     <div class="row">
       <div class="col-lg-6">
-        <h2>Amenities</h2>
+        <h3>Amenities</h3>
         <ul>
-
           <% @tiny_home.amenities.each do |amenity| %>
-
             <li class="list-items-space">
               <i class='<%= amenity.icon %>'></i>
               <p><%= amenity.name.capitalize %></p>
             </li>
-
           <% end %>
 <!--               <li class="list-items-space">
                 <i class="fas fa-hand-sparkles"></i>
