@@ -1,0 +1,53 @@
+<div class="container mt-4 d-flex justify-content-between align-items-center">
+  <h1 class ="">My Tiny Homes</h1>
+  <% if policy(TinyHome).new? %>
+    <%= link_to 'Add a Tiny Home', new_tiny_home_path, class: 'btn btn-secondary' %>
+  <% end %>
+</div>
+<div class="container">
+  <div class="row">
+<!-- tiny home cards -->
+    <% @my_tiny_homes.each do |tiny_home| %>
+      <div class="col-4">
+        <div class="card-trip">
+          <% if tiny_home.photos[0].present?%>
+            <%= cl_image_tag tiny_home.photos[0].key, crop: :fill %>
+          <% else %>
+            <img src="https://thelittlerebellion.com/wp-content/uploads/Sojourner-1-881x589-1.jpg" />
+          <% end %>
+
+          <div class="d-flex card-trip-details">
+            <% if policy(tiny_home).edit? %>
+              <p class='pr-2'><%= link_to 'Edit', edit_tiny_home_path(tiny_home) %></p>
+            <% end %>
+            <% if policy(tiny_home).destroy? %>
+              <p class=''><%= link_to 'Delete', tiny_home_path(tiny_home), method: :delete %></p>
+            <% end %>
+          </div>
+          <div class="card-trip-infos">
+            <div>
+              <h2><%= link_to tiny_home.name, tiny_home_path(tiny_home) %></h2>
+              <p><%= tiny_home.description.capitalize %></p>
+            </div>
+            <h2 class="card-trip-pricing">$<%= tiny_home.price %>/day</h2>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <h1 class="pt-4">Pending Requests</h1>
+    <% @pendings.each do |pending| %>
+      <div class="box pt-4">
+      <%= simple_form_for(pending) do |f| %>
+      <div class="d-flex">
+        <p class="pr-4"><strong><%= pending.tiny_home.name %></strong></p>
+        <%= f.input :approved, label: 'approve' %>
+      </div>
+        <p>FROM <%= pending.start_date %> TO <%= pending.end_date %></p>
+        <%= f.button :submit, class: 'btn btn-secondary', label: 'submit approvals' %>
+      <% end %>
+      <div class="d-flex">
+      </div>
+    <% end %>
+  </div>
+</div>

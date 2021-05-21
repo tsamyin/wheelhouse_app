@@ -4,8 +4,18 @@
       <h1><%= @booking.tiny_home.name %></h1>
       <p>FROM <%= @booking.start_date %> TO <%= @booking.end_date %></p>
       <b>TOTAL: $<%= @booking.total_cost %> </b>
+      <p>status:
+        <% if @booking.approved == false %>
+          <em>pending</em>
+        <% else %>
+          <em>approved!</em>
+        <% end %>
+      </p>
     </div>
     <div class="col-8 my-5">
+      <% if @review.nil? %>
+        <%= link_to 'Add a review', new_booking_review_path(@booking), class: 'btn btn-secondary' %>
+      <% end %>
       <% if policy(@booking).edit? %>
         <%= link_to 'Edit booking', edit_booking_path(@booking), class: 'btn btn-secondary' %>
       <% end %>
@@ -15,3 +25,17 @@
     </div>
   </div>
 </div>
+
+<% unless @review.nil? %>
+  <div class="container">
+    <div class="review">
+      <p><b>My Review</b></p>
+      <p><b>Comment:</b> <%= @booking.review.comment %></p>
+      <p><b>Star:</b> <%= @booking.review.star %></p>
+
+      <%#= link_to 'Edit review', edit_review_path(@review), class: 'btn btn-secondary' %>
+
+      <%= link_to 'Delete review', review_path(@review), method: :delete, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+<% end %>

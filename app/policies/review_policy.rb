@@ -1,12 +1,8 @@
-class TinyHomePolicy < ApplicationPolicy
+class ReviewPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
     end
-  end
-
-  def show?
-    true
   end
 
   def new?
@@ -22,11 +18,6 @@ class TinyHomePolicy < ApplicationPolicy
   end
 
   def destroy?
-    record.bookings.empty? && record.user == user
-  end
-
-  def my_index?
-    true
-    # raise
+    record.booking.user == user
   end
 end

@@ -22,7 +22,6 @@ class TinyHomesController < ApplicationController
         image_url: helpers.asset_url('map_marker.svg')
       }
     end
-
   end
 
   def new
@@ -53,6 +52,7 @@ class TinyHomesController < ApplicationController
         infoWindow: render_to_string(partial: "info_window_show", locals: { tiny_home: @tiny_home }),
         image_url: helpers.asset_url('map_marker.svg')
       }]
+    @booking = Booking.new
   end
 
   def edit
@@ -70,7 +70,15 @@ class TinyHomesController < ApplicationController
   end
 
   def my_index
-    @my_tiny_homes = policy_scope(TinyHome).where(user: current_user)
+    @my_tiny_homes = TinyHome.all.where(user: current_user)
+    @bookings = Booking.all.select do |b|
+      @my_tiny_homes.include?(b.tiny_home)
+    end
+    @pendings = @bookings.select { |b| b.approved == false }
+    authorize @my_tiny_homes
+    # @my_tiny_homes = policy_scope(TinyHome)#.where(user: current_user)
+    # @my_tiny_homes = policy_scope(tiny_home_class, policy_scope_class: TinyHomePolicy::Scope)#.where(user: current_user)
+    # @my_tiny_homes = TinyHomePolicy::Scope.new(current_user, TinyHome).resolve
   end
 
   private

@@ -3,13 +3,18 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :tiny_homes do
-    resources :bookings, only: [:new, :create]
+    resources :bookings, only: :create
     resources :home_amenities, only: [:new, :create, :edit, :update]
   end
 
   get '/my_tiny_homes', to: 'tiny_homes#my_index'
 
-  resources :bookings, only: [:index, :show, :destroy, :edit, :update]
+  resources :bookings, only: [:index, :show, :destroy, :edit, :update] do
+    resources :reviews, only: [:new, :create]
+  end
+
+  resources :reviews, only: [:edit, :update, :destroy]
+
   resources :home_amenities, only: :destroy
 end
 
