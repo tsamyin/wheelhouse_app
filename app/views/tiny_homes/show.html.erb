@@ -47,8 +47,8 @@
       <div class="col-6">
         <div class="card-tiny-infos">
           <div>
-            <% if current_user && current_user.avatar.present?%>
-              <%= cl_image_tag current_user.avatar.key, crop: :fill, class: 'card-tiny-user avatar-bordered' %>
+            <% if @tiny_home.user.avatar.present?%>
+              <%= cl_image_tag @tiny_home.user.avatar.key, crop: :fill, class: 'card-tiny-user avatar-bordered' %>
             <% else %>
               <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-tiny-user avatar-bordered" />
             <% end %>
