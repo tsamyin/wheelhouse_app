@@ -154,7 +154,7 @@ puts 'creating reviews...'
 Booking.all.each do |booking|
   Review.new(
     comment: Faker::Restaurant.review,
-    stars: rand(1..5),
+    star: rand(1..5),
     booking: booking
   )
 end
