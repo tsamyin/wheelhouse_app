@@ -1,9 +1,10 @@
-<div class="cards">
-
   <!-- CARD -->
+<div class="cards">
   <% @other_tiny_homes.each do |tiny_home| %>
     <div class="card_product">
-      <div class="card_product_item">
+
+      <%= link_to tiny_home_path(tiny_home) do %>
+        <div class="card_product_item">
         <div class="card_product_image">
           <% if tiny_home.photos[0].present?%>
             <%= cl_image_tag tiny_home.photos[0].key, crop: :fill %>
@@ -15,7 +16,7 @@
           <div class="card_product_title">
             <div class="card_product_icon_text">
               <p><%= tiny_home.address %></p>
-              <h2><%= link_to tiny_home.name, tiny_home_path(tiny_home) %></h2>
+              <h2><%= tiny_home.name %></h2>
             </div>
             <div class="card_product_title_icon">
               <%= image_tag "icon-heart.svg"%>
@@ -23,12 +24,32 @@
           </div>
           <div class="separator">
           </div>
-
           <div class="card_product_description">
             <p><%= tiny_home.description.capitalize %></p>
           </div>
           <div class="card_product_element">
-            <div class="card_product_element_amenities">
+            <div class="card_product_element_price">
+              <h4 class="card_product_pricing">$<%= tiny_home.price %>/day</h4>
+            </div>
+          </div>
+          <div class="d-flex card_product_element_details">
+            <% if policy(tiny_home).edit? %>
+              <p class='pr-2'><%= link_to 'Edit', edit_tiny_home_path(tiny_home) %></p>
+            <% end %>
+            <% if policy(tiny_home).destroy? %>
+              <p class=''><%= link_to 'Delete', tiny_home_path(tiny_home), method: :delete %></p>
+            <% end %>
+          </div>
+        </div>
+        </div>
+      <% end %>
+
+    </div>
+  <% end %>
+</div>
+
+
+            <!-- <div class="card_product_element_amenities"> -->
 <!--               <ul>
                 <%# @tiny_home.amenities.each do |amenity| %>
                   <li class="card_product_element_amenities_text">
@@ -37,21 +58,4 @@
                   </li>
                 <%# end %>
               </ul> -->
-            </div>
-            <div class="card_product_element_price">
-              <h4 class="card_product_pricing">$<%= tiny_home.price %>/day</h4>
-            </div>
-          </div>
-            <div class="d-flex card_product_element_details">
-              <% if policy(tiny_home).edit? %>
-                <p class='pr-2'><%= link_to 'Edit', edit_tiny_home_path(tiny_home) %></p>
-              <% end %>
-              <% if policy(tiny_home).destroy? %>
-                <p class=''><%= link_to 'Delete', tiny_home_path(tiny_home), method: :delete %></p>
-              <% end %>
-            </div>
-        </div>
-      </div>
-    </div>
-  <% end %>
-</div>
+            <!-- </div> -->
