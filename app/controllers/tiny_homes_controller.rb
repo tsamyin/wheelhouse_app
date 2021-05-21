@@ -53,13 +53,19 @@ class TinyHomesController < ApplicationController
         image_url: helpers.asset_url('map_marker.svg')
       }]
     @booking = Booking.new
+    @reviews = @tiny_home.reviews
   end
 
   def edit
   end
 
   def update
+    # raise
     if @tiny_home.update(tiny_home_params)
+      @tiny_home.home_amenities.destroy_all
+      params[:tiny_home][:amenity_ids].each do |id|
+        HomeAmenity.create!(tiny_home_id: @tiny_home.id, amenity_id: id) unless id == ''
+      end
       redirect_to tiny_home_path(@tiny_home), notice: 'Your tiny home was successfully updated.'
     end
   end
