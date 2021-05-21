@@ -18,7 +18,8 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def update?
-    record.user == user
+    # th = TinyHome.find(record.tiny_home_id)
+    record.user == user || record.tiny_home.user == user
   end
 
   def destroy?

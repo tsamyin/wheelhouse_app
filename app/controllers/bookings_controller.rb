@@ -10,12 +10,6 @@ class BookingsController < ApplicationController
     @review = Review.find_by(booking_id: @booking.id)
   end
 
-  def new
-    @tiny_home = TinyHome.find(params[:tiny_home_id])
-    @booking = Booking.new
-    authorize @booking
-  end
-
   def create
     @booking = Booking.new(booking_params)
     @booking.tiny_home_id = params[:tiny_home_id]
@@ -33,8 +27,10 @@ class BookingsController < ApplicationController
   end
 
   def update
-    if @booking.update(booking_params)
+    if @booking.update(booking_params) && current_user == @booking.user
       redirect_to bookings_path, notice: 'Your booking was successfully updated.'
+    elsif @booking.update(booking_params)
+      redirect_to my_tiny_homes_path, notice: 'Your request was successfully approved.'
     else
       render :edit
     end
@@ -45,6 +41,10 @@ class BookingsController < ApplicationController
     redirect_to bookings_path, notice: 'Your booking was successfully cancelled.'
   end
 
+  def approved!
+    @approved = true
+  end
+
   private
 
   def set_booking
@@ -53,6 +53,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :tiny_home_id, :user_id)
+    params.require(:booking).permit(:start_date, :end_date, :tiny_home_id, :user_id, :approved)
   end
 end
