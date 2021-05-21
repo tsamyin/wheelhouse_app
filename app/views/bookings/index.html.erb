@@ -3,7 +3,8 @@
   <% @bookings.each do |booking| %>
     <div class="row">
       <div class="col-4">
-        <p><strong><%= booking.tiny_home.name %></strong></p>
+        <p><strong><%= link_to booking.tiny_home.name, booking_path(booking) %></strong></p>
+        <p>BOOKED ON <%= booking.tiny_home.created_at %></p>
         <p><%= booking.tiny_home.address %></p>
         <div class="d-flex">
           <p>FROM <%= booking.start_date %> TO <%= booking.end_date %></p>
