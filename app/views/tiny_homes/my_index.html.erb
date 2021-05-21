@@ -35,4 +35,19 @@
       </div>
     <% end %>
   </div>
+  <h1 class="pt-4">Pending Requests</h1>
+    <% @pendings.each do |pending| %>
+      <div class="box pt-4">
+      <%= simple_form_for(pending) do |f| %>
+      <div class="d-flex">
+        <p class="pr-4"><strong><%= pending.tiny_home.name %></strong></p>
+        <%= f.input :approved, label: 'approve' %>
+      </div>
+        <p>FROM <%= pending.start_date %> TO <%= pending.end_date %></p>
+        <%= f.button :submit, class: 'btn btn-secondary', label: 'submit approvals' %>
+      <% end %>
+      <div class="d-flex">
+      </div>
+    <% end %>
+  </div>
 </div>

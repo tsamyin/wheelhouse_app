@@ -44,6 +44,10 @@ class BookingsController < ApplicationController
     redirect_to bookings_path, notice: 'Your booking was successfully cancelled.'
   end
 
+  def approved!
+    @approved = true
+  end
+
   private
 
   def set_booking
@@ -52,6 +56,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :tiny_home_id, :user_id)
+    params.require(:booking).permit(:start_date, :end_date, :tiny_home_id, :user_id, :approved)
   end
 end
