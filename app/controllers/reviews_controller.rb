@@ -20,20 +20,20 @@ class ReviewsController < ApplicationController
 
   def edit
     @review = Review.find(params[:id])
-    @booking = @review.booking
+    authorize(@review)
+    # @booking = @review.booking
   end
 
   def update
-    raise
-    @booking = Booking.find(params[:booking_id])
-    @review = @booking.review
+    @review = Review.find(params[:id])
+    authorize(@review)
+    # @booking = Booking.find(params[:booking_id])
 
-    if @review.update(booking_params)
-      redirect_to bookings_path, notice: 'Your booking was successfully updated.'
+    if @review.update(review_params)
+      redirect_to booking_path(@review.booking), notice: 'Your booking was successfully updated.'
     else
       render :edit
     end
-    redirect_to booking_path(@booking)
   end
 
   def destroy
