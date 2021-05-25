@@ -1,7 +1,12 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-8 my-4">
-      <h1><%= @booking.tiny_home.name %></h1>
+      <% if @booking.tiny_home.photos[0].present?%>
+        <%= cl_image_tag @booking.tiny_home.photos[0].key, width: 400, crop: :fill %>
+      <% else %>
+        <img src="https://thelittlerebellion.com/wp-content/uploads/Sojourner-1-881x589-1.jpg" />
+      <% end %>
+      <h1><%= link_to @booking.tiny_home.name, tiny_home_path(@booking.tiny_home) %></h1>
       <p>FROM <%= @booking.start_date %> TO <%= @booking.end_date %></p>
       <b>TOTAL: $<%= @booking.total_cost %> </b>
       <p>status:
@@ -12,7 +17,7 @@
         <% end %>
       </p>
     </div>
-    <div class="col-8 my-5">
+    <div class="col-8">
       <% if @review.nil? %>
         <%= link_to 'Add a review', new_booking_review_path(@booking), class: 'btn btn-secondary' %>
       <% end %>

@@ -1,6 +1,7 @@
 require "open-uri"
 
 puts 'cleaning db!'
+Review.destroy_all
 HomeAmenity.destroy_all
 Amenity.destroy_all
 Booking.destroy_all
@@ -47,16 +48,22 @@ puts "#{amenities.count} amenities created!"
 # USERS
 puts 'creating users...'
 
-emails = ['pascal@th.com', 'holly@th.com', 'thomas@th.com', 'joe@average.com', 'jess@google.com']
-
+emails = ['pascal@th.com', 'holly@th.com', 'thomas@th.com', 'daniel@google.com', 'anne-ma@google.com']
+avatars = ['https://avatars.githubusercontent.com/u/77168127?v=4',
+           'https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1617638724/rozdl8g3ybb6siqechzz.jpg',
+           'https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1617625823/uxiisxmqoxwg6ltetmwt.jpg',
+           'https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1617128231/a2jv0r1qgeekuaptcyfw.jpg',
+           'https://avatars.githubusercontent.com/u/77209045?v=4']
+count = 0
 emails.each do |email|
   user = User.new(
     email: email,
     password: '123456'
   )
-  file = URI.open("https://t4.ftcdn.net/jpg/04/10/43/77/360_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg")
+  file = URI.open(avatars[count])
   user.avatar.attach(io: file, filename: "avatar.jpg", content_type: 'image/png')
   user.save!
+  count += 1
 end
 puts "#{User.all.count} users created!"
 
@@ -107,7 +114,7 @@ puts "#{TinyHome.all.count} tiny homes created!"
 # BOOKINGS
 puts 'creating bookings...'
 
-5.times do
+10.times do
   booking = Booking.new(
     start_date: rand(30..60).days.from_now,
     end_date: rand(61..90).days.from_now
@@ -141,3 +148,18 @@ TinyHome.all.each do |th|
 end
 
 puts "#{HomeAmenity.all.count} home amenities created!"
+
+puts 'creating reviews...'
+
+Booking.all.each do |booking|
+  Review.new(
+    comment: Faker::Restaurant.review,
+    star: rand(1..5),
+    booking: booking
+  )
+end
+
+
+
+
+
